@@ -12,19 +12,22 @@
             $name = $_POST["name"];
             $password = $_POST["password"];
             $hashedPassword = hash('ripemd160', $password);
-            $insertUser = "INSERT INTO teacher VALUES('$name', '$username', '$hashedPassword','link','0')";
-
-            if($conn->query($insertUser) == TRUE) {
-                createNotification("Account successfully created. You will be informed once you are approved.");
-                createNotification($hashedPassword);
-                header('location: ../registration/teacher-signup.php');
+            $alreadyExists = "SELECT username FROM student WHERE username = '$username'";
+            $result = $conn->query($alreadyExists);
+            if($result->num_rows>0) {
+                createNotification("Username is already taken. Please choose another username.");
+                header('location: ../registration/student-signup.php');
             } else {
-                createNotification("Unable to register. Please fill all the fields again with correct informations.");
-                header('location: ../registration/teacher-signup.php');
+                    $insertUser = "INSERT INTO teacher VALUES('$name', '$username', '$hashedPassword','link','0')";
+
+                    if($conn->query($insertUser) == TRUE) {
+                        createNotification("Account successfully created. You will be informed once you are approved.");
+                        header('location: ../registration/teacher-signup.php');
+                    } else {
+                        createNotification("Unable to register. Please fill all the fields again with correct informations.");
+                        header('location: ../registration/teacher-signup.php');
+                    }
+                }    
             }
-        } else {
-            createNotification("Unable to register. Please fill all the fields again with correct informations.");
-            header('location: ../registration/teacher-signup.php');
-        }
     }
 ?>

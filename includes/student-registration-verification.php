@@ -8,8 +8,8 @@
         header('location: ../registration/student-signup.php');
     } else {
         if(isset($_POST["username"]) && isset($_POST["name"]) && isset($_POST["password"]) && isset($_POST["enrolledOn"]) &&    isset($_POST["faculty"])) {
-            $username = $_POST["username"];
-            $name = $_POST["name"];
+            $username = trim($_POST["username"]);
+            $name = trim(ucwords($_POST["name"]));
             $password = $_POST["password"];
             $hashedPassword = hash('ripemd160',$password);
             $enrolledOn = $_POST["enrolledOn"];

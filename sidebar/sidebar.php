@@ -52,13 +52,13 @@
                         if(isset($row['approved'])) {
                             if($row['approved'] == 1) {
                                 if($loginType == 'teacher' || $loginType == 'admin') {
-                                    echo  "<h6> Welcome " .$username ." </h6>" ."<i class='material-icons'>verified_user</i>";
+                                    echo  "<h6> Welcome " .htmlspecialchars($username) ." </h6>" ."<i class='material-icons'>verified_user</i>";
                                     
                                 } else {
-                                    echo "<h6> Welcome $username <a href='#'>|<b>A</b>|</a></h6>";
+                                    echo "<h6> Welcome htmlspecialchars($username) <a href='#'>|<b>A</b>|</a></h6>";
                                 }
                             } else if($row['approved'] == 0) {
-                                echo "<h6'>Welcome " .$username ." </h6>" ."<a href='#'>|<b>UA</b>|</a>";
+                                echo "<h6'>Welcome " .htmlspecialchars($username) ." </h6>" ."<a href='#'>|<b>UA</b>|</a>";
                             }
                         }
                     } else {
@@ -82,7 +82,7 @@
                                     $title = $row['title'];
                                     $article_id = $row['article_id'];
                                     echo "<li>";    
-                                    echo "<a href='story.php?article_id=$article_id'> $title </a>";        
+                                    echo "<a href='story.php?article_id=$article_id'>" .htmlspecialchars($title) ."</a>";        
                                 }
                                 echo "</li>";    
                             } else {
@@ -103,7 +103,7 @@
                                     $title = $row['title'];
                                     $article_id = $row['article_id'];
                                     echo "<li>";    
-                                    echo "<a href='poem.php?article_id=$article_id'> $title </a>";        
+                                    echo "<a href='poem.php?article_id=$article_id'>" .htmlspecialchars($title) ."</a>";        
                                 }
                                 echo "</li>";    
                             } else {
@@ -124,7 +124,7 @@
                                     $title = $row['title'];
                                     $article_id = $row['article_id'];
                                     echo "<li>";    
-                                    echo "<a href='others.php?article_id=$article_id'> $title </a>";        
+                                    echo "<a href='others.php?article_id=$article_id'>" .htmlspecialchars($title) ."</a>";        
                                 }
                                 echo "</li>";    
                             } else {

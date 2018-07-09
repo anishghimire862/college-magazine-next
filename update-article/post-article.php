@@ -6,7 +6,14 @@
         if(isset($_POST["title"]) && isset($_POST["category"]) && isset($_POST["content"])) {
             $title = $_POST["title"];
             $category = $_POST["category"];
-            $content = mysqli_real_escape_string($conn,$_POST["content"]);
+            $content = $_POST["content"];
+            
+            // bug : ssubmits empty fields to the database
+            
+            $title = mysqli_real_escape_string($conn,$title);
+            $category = mysqli_real_escape_string($conn,$category);
+            $content = mysqli_real_escape_string($conn,$content);
+            
             $username = $_SESSION['loggedin'];
             $loginType = $_SESSION['loginType'];
 
