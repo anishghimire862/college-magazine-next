@@ -15,7 +15,7 @@
     $last_updated = $row['last_updated'];
     $posted_by = $row['posted_by'];
     $loginType = $row['login_type'];
-   
+    
 
     $counter = $row['views'];
     $counter++;
@@ -24,15 +24,16 @@
         $views = $row['views'];
     }
     // retriving user details 
-    
+
     $sql = "SELECT * FROM $loginType WHERE username = '$posted_by'";
-    
+
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     
     $name = $row['name'];
     $approved = $row['approved'];
     $username = $row['username'];
+    $image = $row['photo'];
     if(isset($loginType)){
         if($loginType == 'student') {
         $faculty = $row['faculty'];

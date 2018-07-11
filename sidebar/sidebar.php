@@ -52,13 +52,13 @@
                         if(isset($row['approved'])) {
                             if($row['approved'] == 1) {
                                 if($loginType == 'teacher' || $loginType == 'admin') {
-                                    echo  "<h6> Welcome " .htmlspecialchars($username) ." </h6>" ."<i class='material-icons'>verified_user</i>";
+                                    echo  "<h6> Welcome " .strip_tags($username) ."<i class='material-icons' style='font-size: 15px;'>verified_user</i> </h6>";
                                     
                                 } else {
-                                    echo "<h6> Welcome htmlspecialchars($username) <a href='#'>|<b>A</b>|</a></h6>";
+                                    echo "<h6> Welcome " .strip_tags($username) ."<a href='#'>|<b>A</b>|</a></h6>";
                                 }
                             } else if($row['approved'] == 0) {
-                                echo "<h6'>Welcome " .htmlspecialchars($username) ." </h6>" ."<a href='#'>|<b>UA</b>|</a>";
+                                echo "<h6'>Welcome " .strip_tags($username) ." </h6> " ."<a href='#'>|<b>UA</b>|</a>";
                             }
                         }
                     } else {
@@ -82,7 +82,7 @@
                                     $title = $row['title'];
                                     $article_id = $row['article_id'];
                                     echo "<li>";    
-                                    echo "<a href='story.php?article_id=$article_id'>" .htmlspecialchars($title) ."</a>";        
+                                    echo "<a href='story.php?article_id=$article_id'>" .strip_tags($title) ."</a>";        
                                 }
                                 echo "</li>";    
                             } else {
@@ -103,7 +103,7 @@
                                     $title = $row['title'];
                                     $article_id = $row['article_id'];
                                     echo "<li>";    
-                                    echo "<a href='poem.php?article_id=$article_id'>" .htmlspecialchars($title) ."</a>";        
+                                    echo "<a href='poem.php?article_id=$article_id'>" .strip_tags($title) ."</a>";        
                                 }
                                 echo "</li>";    
                             } else {
@@ -124,7 +124,7 @@
                                     $title = $row['title'];
                                     $article_id = $row['article_id'];
                                     echo "<li>";    
-                                    echo "<a href='others.php?article_id=$article_id'>" .htmlspecialchars($title) ."</a>";        
+                                    echo "<a href='others.php?article_id=$article_id'>" .strip_tags($title) ."</a>";        
                                 }
                                 echo "</li>";    
                             } else {
@@ -169,7 +169,7 @@
                                     <div class="dropdown-divider"></div>        
                                   <li><a href="./login/teacher-login.php" class="dropdown-item">Teacher login</a></li>
                                     <div class="dropdown-divider"></div>    
-                                  <li><a href="#" class="dropdown-item">Admin login</a></li>
+                                  <li><a href="./login/admin-login.php" class="dropdown-item">Admin login</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -188,17 +188,24 @@
                                 <a class="nav-link" href="/new-college/">HOME</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">ABOUT US</a>
+                                <a class="nav-link" href="./about-us.php">ABOUT US</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="./update-article/index.php">SUBMIT ARTICLES</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">GALLERY</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">PAST STUDENTS</a>
-                            </li>    
+                            <?php
+                                if(isset($_SESSION['loginType'])) {
+                                    if($_SESSION['loginType'] == 'admin') {
+                                        
+                            ?>    
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="./dashboard/">DASHBOARD</a>
+                                        </li>
+                            <?php
+                                    }
+                                }
+                            ?> 
+                            
                         </ul>
                     </div>
                 </div>

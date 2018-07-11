@@ -1,15 +1,16 @@
 <?php
+    
     include './connection/connection.php';
     include './sidebar/sidebar.php';
     include './includes/retrive-articles.php';
 ?>   
      <div class="card p-1 pb-0">
          <div style="background-color: #314D68; letter-spacing: 1px;">
-            <p class="text-center text-capitalize font-weight-bold p-1 pb-0 h1" style="color: #fff;"><?php echo $title; ?></p>
+            <p class="text-center text-capitalize font-weight-bold p-1 pb-0 h1" style="color: #fff;"><?php echo strip_tags($title); ?></p>
          </div>
          <?php
             if(isset($_SESSION['loggedin'])) {
-                if($_SESSION['loggedin'] == $username) {
+                if($_SESSION['loggedin'] == $username || $_SESSION['loginType'] == 'admin') {
          ?>
          <div class="text-right" style="color: blue; text-decoration: underline;">
             <?php echo "<a href='./edit/index.php?article_id=$id'> Edit </a>";?>
@@ -20,20 +21,20 @@
             }
          ?>
         <div class="pl-md-5 pl-sm-1 pr-md-5 pr-sm-1">
-            <p class="text-justify font-weight-light" style="font-size: 0.875em; color: #222222; margin: 0.5em 0; line-height: 28px;"><?php echo nl2br($content); ?></p> 
+            <p class="text-justify font-weight-light" style="font-size: 0.875em; color: #222222; margin: 0.5em 0; line-height: 28px;"><?php echo nl2br(strip_tags($content)); ?></p> 
             <br/>
             <span class="text-left font-italic" style="font-size: 13px; color: #9f9b9b;">Posted on: <?php echo $posted_on; ?></span>
         </div>
         <div>
             <figure class="text-right">
-                <img src="./user-images/user-image.jpg" alt="Profile Picture" class="img-responsive" width="100" height="100">
+                <img src="<?php echo $image?>" alt="Profile Picture" class="img-responsive" width="80" height="80">
                     <figcaption> <?php 
                                     if($loginType=='teacher'){
-                                        echo $name ."<i class='material-icons'>verified_user</i>";
+                                        echo $name ."<i class='material-icons' style='font-size: 15px;'>verified_user</i>";
                                     } else if($loginType=='student') {
                                         echo $name;
                                     } else {
-                                        echo $name;
+                                        echo $name ."<i class='material-icons' style='font-size: 15px;'>verified_user</i>";
                                     }
                                     
                                  ?> 
@@ -54,9 +55,19 @@
     <div class="line"> </div>
     <?php
         $aid = $_GET['article_id'];
+        if(isset($_SESSION['loggedin']) && isset($_SESSION['loginType'])) {
+            $loggedUser = $_SESSION['loggedin'];
+            $loggedType = $_SESSION['loginType'];
+        
+        $sql = "SELECT * FROM $loggedType WHERE username = '$loggedUser'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+    }
+        
     ?> 
     <?php 
-        if(isset($_SESSION['loggedin'])  && $approved == 1) { 
+        if(isset($_SESSION['loggedin'])  && $row['approved'] == 1) {
+            
     ?>        
     <div>
         <form action="./includes/post-comment.php" method="post">
@@ -69,6 +80,8 @@
         </form>
     </div>
     <?php
+        } else if($row['approved'] == 0){
+            echo "<div class='alert alert-warning' role='alert'>Please wait untill you are verified to post a comment.</div>";
         } else {
             echo "<div class='alert alert-warning' role='alert'>Please login or register to post a comment.</div>";
         }
@@ -82,11 +95,11 @@
         ?>
             <div class="row mt-1">
                 <figure class="col-md-2">
-                    <img src="./user-images/user-image.jpg" alt="Profile Picture" class="img-fluid pl-1 rounded-circle" style="width: 80px; height: 50px;">
+                    <img src="<?php echo $row['photo']; ?>" alt="Profile Picture" class="img-fluid pl-1 rounded-circle" style="width: 80px; height: 80px;">
                     <figcaption class="pl-md-2 pl-1"> <?php echo $row['commented_by']; ?> </figcaption>
                 </figure>
                 <div class="col-md-10">
-                    <p class="p-2 card"> <?php echo $row['content']; ?> </p>
+                    <p class="p-2 card"> <?php echo strip_tags($row['content']); ?> </p>
                 </div>    
             </div>     
     <?php

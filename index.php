@@ -16,9 +16,9 @@
             <?php      
                 echo "<a href='./story.php?article_id=$article_id'>";  
             ?>            
-                    <h6 class="card-title m-0 p-2 title"><?php echo htmlspecialchars($row['title']); ?></h6>  
+                    <h6 class="card-title m-0 p-2 title"><?php echo strip_tags($row['title']); ?></h6>  
                     <div class="card-body p-2">  
-                        <p class="card-text"><?php echo htmlspecialchars($substring) ."..."; ?></p>
+                        <p class="card-text"><?php echo strip_tags($substring) ."..."; ?></p>
                     </div>
             <?php      
                 echo "</a>"
@@ -45,9 +45,9 @@
             <?php      
                 echo "<a href='./poem.php?article_id=$article_id'>";  
             ?>    
-                <h6 class="card-title  m-0 p-2 title"><?php echo htmlspecialchars($row['title']); ?></h6>
+                <h6 class="card-title  m-0 p-2 title"><?php echo strip_tags($row['title']); ?></h6>
                 <div class="card-body p-2">
-                  <p class="card-text"><?php echo htmlspecialchars($substring) ."..."; ?></p>
+                  <p class="card-text"><?php echo strip_tags($substring) ."..."; ?></p>
                 </div>
             <?php      
                 echo "</a>"
@@ -74,9 +74,9 @@
             <?php      
                 echo "<a href='./others.php?article_id=$article_id'>";  
             ?>      
-                <h6 class="card-title m-0 p-2 title"><?php echo htmlspecialchars($row['title']); ?></h6>
+                <h6 class="card-title m-0 p-2 title"><?php echo strip_tags($row['title']); ?></h6>
                 <div class="card-body p-2">
-                  <p class="card-text"><?php echo htmlspecialchars($substring) ."..."; ?></p>
+                  <p class="card-text"><?php echo strip_tags($substring) ."..."; ?></p>
                 </div>
             <?php      
                 echo "</a>"
@@ -90,7 +90,6 @@
             
 
             <div class="line"></div>
-
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

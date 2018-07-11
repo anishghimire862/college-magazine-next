@@ -28,7 +28,7 @@
     include '../includes/header.php';
 ?>
         <div class="container">
-        <form class="form-horizontal" role="form" method="POST" action="../includes/student-registration-verification.php">
+        <form class="form-horizontal" role="form" method="POST" action="../includes/student-registration-verification.php" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
@@ -116,7 +116,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1">faculty</label>
+                        <label for="exampleFormControlSelect1">Faculty</label>
                         <select class="form-control" id="exampleFormControlSelect1" name="faculty" >
                             <option style="display:none;" disabled="disabled" selected value=""> </option>
                             <option value="bim">BIM</option>
@@ -126,25 +126,20 @@
                 </div>    
             </div>
                         
-            
-            
             <div class="row">
                 <div class="col-md-3"></div>
-                <div class="col-md-6" style="padding-top: .35rem">
-                    <div class="form-check mb-2 mr-sm-2 mb-sm-0">
-                        <label class="form-check-label">
-                            <input class="form-check-input" name="remember"
-                                   type="checkbox" >
-                            <span style="padding-bottom: .15rem">Remember me</span>
-                        </label>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="profilePicture">Profile Picture</label>
+                        <input type="file" class="form-control-file" id="profilePicture" name="profilePicture">        
                     </div>
-                </div>
+                </div>    
             </div>
+            
             <div class="row" style="padding-top: 1rem">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-success"><i class="fa fa-sign-in"></i>Register</button>
-                    <a class="btn btn-link" href="/password/reset">Forgot Your Password?</a>
                 </div>
             </div>
         </form>

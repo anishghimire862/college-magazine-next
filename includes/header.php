@@ -21,6 +21,15 @@
                             <li class="nav-item active">
                                 <a class="nav-link" href="../">HOME</a>
                             </li>
+                            <?php 
+                                if(isset($_SESSION['loggedin'])) {
+                            ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../logout.php">LOGOUT</a>
+                            </li>
+                            <?php 
+                                } else {
+                            ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown" data-toggle="dropdown" href="#" role="button">LOGIN
                                 <span class="caret"></span></a>
@@ -41,18 +50,28 @@
                                   <li><a href="/new-college/registration/teacher-signup.php" class="dropdown-item">Teacher signup</a></li>
                                 </ul>
                             </li>
+                            <?php
+                                }
+                            ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">ABOUT US</a>
+                                <a class="nav-link" href="../about-us.php">ABOUT US</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">SUBMIT ARTICLES</a>
+                                <a class="nav-link" href="../update-article/index.php">SUBMIT ARTICLES</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">GALLERY</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">PAST STUDENTS</a>
-                            </li>
+                            <?php
+                                if(isset($_SESSION['loginType'])) {
+                                    if($_SESSION['loginType'] == 'admin') {
+                                        
+                            ?>    
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="./dashboard/">DASHBOARD</a>
+                                        </li>
+                            <?php
+                                    }
+                                }
+                            ?>
+                            
                         </ul>
                     </div>
                 </div>

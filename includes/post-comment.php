@@ -5,7 +5,12 @@
     $article_id = $_POST['aid'];
     $loginType = $_SESSION['loginType'];
     $commented_by = $_SESSION['loggedin'];
-    $insert = "INSERT INTO comment(content,commented_by,article_id,login_type) VALUES('$comment','$commented_by',$article_id,'$loginType')";
+
+    $sql = "SELECT * FROM $loginType WHERE username = '$commented_by'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $image = $row['photo'];
+    $insert = "INSERT INTO comment(content,commented_by,article_id,login_type,photo) VALUES('$comment','$commented_by',$article_id,'$loginType','$image')";
 
     if($conn->query($insert) == TRUE) {
         $_SESSION['commmentSuccessful'] = "Successfully commented";
