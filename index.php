@@ -1,7 +1,32 @@
 <?php
     include './sidebar/sidebar.php';
 //    include './connection/connection.php';
-?>
+?>      
+            <h4> MOST VIEWED ARTICLE </h4>
+            <div class="card-columns">
+                <?php
+                    $mostviewed = "SELECT * FROM article ORDER BY views DESC LIMIT 1";
+                    $result = $conn->query($mostviewed);
+                    $row = $result->fetch_assoc();
+                    $article_id = $row['article_id'];
+                    $category = $row['category'];
+                    $substring = substr($row['content'],0,103); 
+                ?>
+                <div class="card">
+                        <?php
+                            echo "<a href='./$category.php?article_id=$article_id'>";
+                        ?>
+
+                        <h6 class="card-title m-0 p-2 title"><?php echo strip_tags($row['title']); ?></h6>  
+                            <div class="card-body p-2">  
+                                <p class="card-text"><?php echo strip_tags($substring); ?></p>
+                            </div>
+                <?php    
+                   echo "</a>";
+                ?>       
+                </div>
+            </div>
+            <div class="line"></div>            
             <h4>STORY</h4>
             <div class="card-columns">
             <?php
