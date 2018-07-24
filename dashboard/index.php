@@ -65,7 +65,7 @@
             <?php
                     } 
                 } else {
-                    echo "<div class='bg-info'>No request requiring approval </div>";
+                    echo "<div class='alert alert-primary'>No request requiring approval </div>";
                 }
             ?>      
               </tbody>
@@ -102,7 +102,7 @@
             <?php
                     } 
                 } else {
-                    echo "<div class='bg-info'>No request requiring approval</div>";
+                    echo "<div class='alert alert-primary'>No request requiring approval</div>";
                 }
             ?>      
               </tbody>
@@ -151,7 +151,7 @@
             <?php
                     } 
                 } else {
-                    echo "No request requiring approval";
+                    echo "<div class='alert alert-primary'>No request requiring approval</div>";
                 }
             ?>      
               </tbody>

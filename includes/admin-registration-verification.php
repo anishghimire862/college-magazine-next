@@ -3,11 +3,11 @@
     include '../connection/connection.php';
     include_once 'notification.php';
     
-    if(empty($_POST['username']) || empty($_POST['password'])) {
+    if(empty($_POST['username']) || empty($_POST['password']) || empty($_POST['name'])) {
         createNotification("All the fields are mandatory and need to be correct for successful approval to join.");
         header('location: ../registration/admin-signup.php');
     } else {
-        if(isset($_POST["username"]) && isset($_POST["password"])) {
+        if(isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST['name'])) {
             $username = trim($_POST["username"]);
             $name = trim(ucwords($_POST["name"]));
             $password = $_POST["password"];
@@ -20,7 +20,7 @@
                 header('location: ../registration/admin-signup.php');
             } else {
 
-                $insertUser = "INSERT INTO admin VALUES('$username', '$hashedPassword','1')";
+                $insertUser = "INSERT INTO admin(username,password,approved,name) VALUES('$username', '$hashedPassword','1','$name')";
 
                 if($conn->query($insertUser) == TRUE) {
                     createNotification("Account successfully created.");

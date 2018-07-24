@@ -9,10 +9,17 @@
     } else {
         if(isset($_POST["username"]) && isset($_POST["name"]) && isset($_POST["password"]) && !empty($_FILES["profilePicture"]['tmp_name'])) {
             $username = $_POST["username"];
+            $length = strlen($username);
             $name = $_POST["name"];
             $password = $_POST["password"];
             $hashedPassword = hash('ripemd160', $password);
-            $path = "../../profile-picture/" .$_FILES['profilePicture']['name'];
+            $path = "../profile-picture/" .$_FILES['profilePicture']['name'];
+            
+            if($length<6) {
+                createNotification("Please select username with six or more characters.");
+                header('location: ../registration/teacher-signup.php');
+                exit;
+            }
             
             $alreadyExists = "SELECT username FROM teacher WHERE username = '$username'";
             $result = $conn->query($alreadyExists);
@@ -35,10 +42,16 @@
                 }    
             } else if(isset($_POST["username"]) && isset($_POST["name"]) && isset($_POST["password"]) && empty($_FILES['profilePicture']['tmp_name'])) {
                 $username = $_POST["username"];
+                $length = strlen($username);
                 $name = $_POST["name"];
                 $password = $_POST["password"];
                 $hashedPassword = hash('ripemd160', $password);
-            
+                
+                if($length<6) {
+                    createNotification("Please select username with six or more characters.");
+                    header('location: ../registration/teacher-signup.php');
+                    exit;
+                }
             $alreadyExists = "SELECT username FROM teacher WHERE username = '$username'";
             $result = $conn->query($alreadyExists);
             if($result->num_rows>0) {

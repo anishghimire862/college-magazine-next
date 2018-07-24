@@ -9,13 +9,18 @@
     } else {
         if(isset($_POST["username"]) && isset($_POST["name"]) && isset($_POST["password"]) && isset($_POST["enrolledOn"]) && isset($_POST["faculty"]) && !empty($_FILES["profilePicture"]['tmp_name'])) {
             $username = $_POST["username"];
+            $length = strlen($username);
             $name = $_POST["name"];
             $password = $_POST["password"];
             $hashedPassword = hash('ripemd160', $password);
             $enrolled = $_POST['enrolledOn'];
             $faculty = $_POST['faculty'];
-            $path = "../../profile-picture/" .$_FILES['profilePicture']['name'];
+            $path = "../profile-picture/" .$_FILES['profilePicture']['name'];
             
+            if($length<6) {
+                createNotification("Please select username with six or more characters.");
+                header('location: ../registration/student-signup.php');
+            }
             
             $alreadyExists = "SELECT username FROM student WHERE username = '$username'";
             $result = $conn->query($alreadyExists);
@@ -40,12 +45,18 @@
             }
         else if(isset($_POST["username"]) && isset($_POST["name"]) && isset($_POST["password"]) && isset($_POST["enrolledOn"]) &&    isset($_POST["faculty"]) && empty($_FILES["profilePicture"]['tmp_name'])) {
             $username = $_POST["username"];
+            $length = strlen($username);
             $name = $_POST["name"];
             $password = $_POST["password"];
             $hashedPassword = hash('ripemd160', $password);
             $enrolled = $_POST['enrolledOn'];
             $faculty = $_POST['faculty'];
 
+            if($length<6) {
+                createNotification("Please select username with six or more characters.");
+                header('location: ../registration/student-signup.php');
+                exit;
+            }
             
             $alreadyExists = "SELECT username FROM student WHERE username = '$username'";
             $result = $conn->query($alreadyExists);

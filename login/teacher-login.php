@@ -1,7 +1,7 @@
-<!DOCTYPE html>
 <?php
     session_start();
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -24,53 +24,9 @@
 </head>
 <body style="background-color: #fafafa;">
 <div id="content">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-align-justify"></i>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/new-college">HOME</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown" data-toggle="dropdown" href="#" role="button">LOGIN
-                        <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="../login/student-login.php" class="dropdown-item">Student login</a></li>
-                            <div class="dropdown-divider"></div>        
-                          <li><a href="teacher-login.php" class="dropdown-item">Teacher login</a></li>
-                            <div class="dropdown-divider"></div>    
-                          <li><a href="#" class="dropdown-item">Admin login</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown" data-toggle="dropdown" href="#" role="button">REGISTER
-                        <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="../registration/student-signup.php" class="dropdown-item">Student signup</a></li>
-                            <div class="dropdown-divider"></div>
-                          <li><a href="../registration/teacher-signup.php" class="dropdown-item">Teacher signup</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ABOUT US</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">SUBMIT ARTICLES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">GALLERY</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">PAST STUDENTS</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php
+include "../includes/header.php";
+?>
         <div class="container">
         <form class="form-horizontal" role="form" method="POST" action="../includes/login-verification.php">
             <div class="row">
@@ -130,24 +86,13 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6" style="padding-top: .35rem">
-                    <div class="form-check mb-2 mr-sm-2 mb-sm-0">
-                        <label class="form-check-label">
-                            <input class="form-check-input" name="remember"
-                                   type="checkbox" >
-                            <span style="padding-bottom: .15rem">Remember me</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
+           
             <input type="hidden" name="loginType[]" value="teacher" />
             <div class="row" style="padding-top: 1rem">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-success"><i class="fa fa-sign-in"></i> Login</button>
-                    <a class="btn btn-link" href="/password/reset">Forgot Your Password?</a>
+                
                 </div>
             </div>
         </form>

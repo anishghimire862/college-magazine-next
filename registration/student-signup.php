@@ -21,6 +21,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body style="background-color: #fafafa;">
 <div id="content">
@@ -44,15 +45,16 @@
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
                             <input type="text" name="username" class="form-control" id="username"
-                                   placeholder="username" required>
+                                   placeholder="username" required maxlength="16">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-<!--                             error message -->
+                        <span class="text-danger align-middle" id="status">
+                             
                         </span>
+<!--                        <p><img src="https://cdn1.iconfinder.com/data/icons/loading-icon/100/loading_icon-05-512.png" id="loaderIcon" style="display:none" alt="Image" /></p>-->
                     </div>
                 </div>
             </div>
@@ -145,12 +147,31 @@
         </form>
     </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $("#username").blur(function(){    
+                jQuery.ajax({
+                    url: "../username-check.php",
+                    data:'username='+$("#username").val(),
+                    type: "POST",
+                    success:function(data){
+                        $("#status").html(data);
+                    },
+                    error:function (){}
+                });
+            }); 
+        });
+    </script>
+
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </body>
 </html>

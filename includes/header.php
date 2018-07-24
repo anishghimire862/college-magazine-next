@@ -34,20 +34,20 @@
                                 <a class="nav-link dropdown" data-toggle="dropdown" href="#" role="button">LOGIN
                                 <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                  <li><a href="/new-college/login/student-login.php" class="dropdown-item">Student login</a></li>
+                                  <li><a href="../login/student-login.php" class="dropdown-item">Student login</a></li>
                                     <div class="dropdown-divider"></div>        
-                                  <li><a href="/new-college/login/teacher-login.php" class="dropdown-item">Teacher login</a></li>
+                                  <li><a href="../login/teacher-login.php" class="dropdown-item">Teacher login</a></li>
                                     <div class="dropdown-divider"></div>    
-                                  <li><a href="/new-college/login/admin-login.php" class="dropdown-item">Admin login</a></li>
+                                  <li><a href="../login/admin-login.php" class="dropdown-item">Admin login</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown" data-toggle="dropdown" href="#" role="button">REGISTER
                                 <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                  <li><a href="/new-college/registration/student-signup.php" class="dropdown-item">Student signup</a></li>
+                                  <li><a href="../registration/student-signup.php" class="dropdown-item">Student signup</a></li>
                                     <div class="dropdown-divider"></div>
-                                  <li><a href="/new-college/registration/teacher-signup.php" class="dropdown-item">Teacher signup</a></li>
+                                  <li><a href="../registration/teacher-signup.php" class="dropdown-item">Teacher signup</a></li>
                                 </ul>
                             </li>
                             <?php
@@ -65,7 +65,7 @@
                                         
                             ?>    
                                         <li class="nav-item">
-                                            <a class="nav-link" href="./dashboard/">DASHBOARD</a>
+                                            <a class="nav-link" href="../dashboard/">DASHBOARD</a>
                                         </li>
                             <?php
                                     }

@@ -1,25 +1,24 @@
 <?php
-    session_start();
     include '../connection/connection.php';
     include_once '../includes/notification.php';
 ?>
-
-        <?php
-            if(isset($_SESSION['loggedin'])) {
-                $username = $_SESSION['loggedin'];
-                $loginType = $_SESSION['loginType'];
-                $sql = "SELECT * FROM $loginType WHERE username = '$username'";
-                $result = $conn->query($sql);
-                $row = $result->fetch_assoc();
-            }
-            if(!isset($_SESSION['loggedin'])) {
-                createNotification("You cannot view SUBMIT ARTICLE page in GUEST mode. Please login or signup to submit articles.");
-                header('location: ../index.php', false);
-            } else if(($row['approved'])==0) {
-                createNotification("You cannot view SUBMIT ARTICLE page unless you are approved. We will inform you as soon as you are approved.");
-                header('location: ../index.php', false);
-            } else {
-        ?>
+<?php
+    if(isset($_SESSION['loggedin'])) {
+        $username = $_SESSION['loggedin'];
+        $loginType = $_SESSION['loginType'];
+        $sql = "SELECT * FROM $loginType WHERE username = '$username'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+    }    
+    if(!isset($_SESSION['loggedin'])) {
+        createNotification("You cannot view SUBMIT ARTICLE page in GUEST mode. Please login or signup to submit articles.");
+        header('location: ../index.php',false);
+    } else if(($row['approved'])==0) {
+        createNotification("You cannot view SUBMIT ARTICLE page unless you are approved. We will inform you as soon as you are approved.");
+        header('location: ../index.php',false);
+    }                 
+    else {
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,6 +1,16 @@
 <?php
     session_start();
-    
+    include_once '../includes/notification.php';
+    if(!isset($_SESSION['loginType'])) {
+        createNotification("No permission.");
+        header('location: ./student-signup.php');
+    }
+    if(isset($_SESSION['loginType'])) {
+        if($_SESSION['loginType'] != 'admin') {
+            createNotification("No permission to view this page");
+            header('location: ../index.php');
+        }
+    } else {    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +18,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Student signup</title>
+    <title>Admin signup</title>
 
      <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -32,7 +42,7 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <h2>Student registration</h2>
+                    <h2>Admin registration</h2>
                     <hr>
                 </div>
             </div>
@@ -77,17 +87,31 @@
                     </div>
                 </div>
             </div>
-
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="form-group has-danger">
+                        <label class="sr-only" for="name">Name</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                            <input type="text" name="name" class="form-control" id="name"
+                                   placeholder="name" required>
+                        </div>
+                    </div>
+                </div>
+            </div>    
             <div class="row" style="padding-top: 1rem">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-success"><i class="fa fa-sign-in"></i>Register</button>
-                    <a class="btn btn-link" href="/password/reset">Forgot Your Password?</a>
-                </div>
+                 </div>
             </div>
         </form>
     </div>
     </div>
+<?php
+}
+?>    
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

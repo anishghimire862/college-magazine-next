@@ -1,7 +1,7 @@
 <?php 
     include '../connection/connection.php';
     include_once 'notification.php';
-    session_start();
+    //session_start();
     $loginType = $_POST['loginType'][0];
     
     $username = $_POST['username'];

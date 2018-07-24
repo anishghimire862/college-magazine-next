@@ -12,14 +12,14 @@
                     $category = $row['category'];
                     $substring = substr($row['content'],0,103); 
                 ?>
-                <div class="card">
+                <div class="card" style="height: 10em;">
                         <?php
                             echo "<a href='./$category.php?article_id=$article_id'>";
                         ?>
 
                         <h6 class="card-title m-0 p-2 title"><?php echo strip_tags($row['title']); ?></h6>  
                             <div class="card-body p-2">  
-                                <p class="card-text"><?php echo strip_tags($substring); ?></p>
+                                <p class="card-text"><?php echo strip_tags($substring) ."..."; ?></p>
                             </div>
                 <?php    
                    echo "</a>";
@@ -37,7 +37,7 @@
                     $substring = substr($row['content'],0,103); 
                     $article_id = $row['article_id'];    
             ?>
-              <div class="card">
+              <div class="card" style="height: 10em;">
             <?php      
                 echo "<a href='./story.php?article_id=$article_id'>";  
             ?>            
@@ -66,7 +66,7 @@
                     $substring = substr($row['content'],0,103);
                     $article_id = $row['article_id'];    
             ?>
-            <div class="card">
+            <div class="card" style="height: 10em;">
             <?php      
                 echo "<a href='./poem.php?article_id=$article_id'>";  
             ?>    
@@ -95,7 +95,7 @@
                     $substring = substr($row['content'],0,103);
                     $article_id = $row['article_id'];    
             ?>
-              <div class="card">
+              <div class="card" style="height: 10em;">
             <?php      
                 echo "<a href='./others.php?article_id=$article_id'>";  
             ?>      

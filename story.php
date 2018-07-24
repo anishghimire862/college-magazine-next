@@ -73,7 +73,7 @@
         <form action="./includes/post-comment.php" method="post">
             <div class="form-group">
                 <label for="userComment">Write your comment here..</label>
-                <textarea class="form-control" id="userComment" rows="2" name="comment"></textarea>
+                <textarea class="form-control" id="userComment" rows="2" name="comment" required></textarea>
                 <button type="submit" class="btn btn-success mt-1">SUBMIT</button>
             </div>
             <input type="hidden" value="<?php echo $aid; ?>" name="aid" />
