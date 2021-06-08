@@ -1,10 +1,10 @@
 <?php
     $servername = "localhost";
-    $username = "username";
-    $password = "Fucky0ubitch";
-    $dbname = "id6510059_college";
+    $username = "maguser";
+    $password = "magpassword";
+    $dbname = "magdb";
 
-    $conn = new mysqli($servername, "root", "", $dbname);
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
     if($conn->connect_error) {
         die("Connection failed");
