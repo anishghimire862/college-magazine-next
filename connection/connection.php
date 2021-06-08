@@ -1,8 +1,8 @@
 <?php
-    $servername = "143.198.160.247";
-    $username = "mag_user";
-    $password = "magpassword";
-    $dbname = "mag_db";
+    $servername = "localhost";
+    $username = "cmagazine_user";
+    $password = "password";
+    $dbname = "cmagazine_db";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
