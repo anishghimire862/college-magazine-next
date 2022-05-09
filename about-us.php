@@ -3,6 +3,7 @@
 //    include './connection/connection.php';
 ?>      
     <p class="text-justify font-weight-light" style="font-size: 0.875em; color: #222222; margin: 0.5em 0; line-height: 28px;">
+        ---- Rollback test - Cleavr ----
         As the world is getting advanced with new innovations & technological inventions, we are still wasting so much of investment and effort on paper. This project is a small initiation to make the world more digitized. Why waste so much of wealth & wait for almost a year for things that can be done right now? This Digital Paper facilitates its user to read & add contents immediately. You can immediately browse the contents, upload your articles, whenever & wherever you are. 
     </p> 
     <figure>
