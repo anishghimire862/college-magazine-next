@@ -6,3 +6,4 @@
 - Deploy the app so we can retrive mysql dump file. NOTE: It wont work at this step.
 - SSH into the server. Run ssh root@serverIp
 - Run `mysql -u cmagazine_user -p cmagazine_db < /home/cleavr/bqfzjwcyco1802.cleaver.rocks/current/id6510059_college.sql`
+-
